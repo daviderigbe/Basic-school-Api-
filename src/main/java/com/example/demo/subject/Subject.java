@@ -1,5 +1,7 @@
 package com.example.demo.subject;
 
+import com.example.demo.student.Student;
+
 import javax.persistence.*;
 
 @Entity
@@ -19,6 +21,11 @@ public class Subject {
     private String name;
     private String code;
 
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @JoinTable(name = "student_subject", joinColumns = @JoinColumn(name = "student_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "subject_id", referencedColumnName = "id"))
+    private Student student;
+
     public Subject() {
     }
 
@@ -34,6 +41,14 @@ public class Subject {
                    String code) {
         this.name = name;
         this.code = code;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
     }
 
     public Long getId() {
@@ -66,6 +81,7 @@ public class Subject {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", code='" + code + '\'' +
+                ", student=" + student +
                 '}';
     }
 }

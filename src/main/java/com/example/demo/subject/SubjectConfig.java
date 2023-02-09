@@ -10,8 +10,8 @@ import java.util.List;
 
 @Configuration
 public class SubjectConfig {
-    //    @Bean
-    CommandLineRunner commandLineRunner(
+        @Bean
+    CommandLineRunner subjectCL(
             SubjectRepository repository) {
         return args -> {
             Subject Math = new Subject(

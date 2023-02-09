@@ -45,4 +45,10 @@ public class StudentController {
     public Student getStudent(@PathVariable(value = "id") Long id) {
         return studentService.getStudent(id);
     }
+
+    @PutMapping("/{studentId}/assign")
+    public Student assignSubjectsToStudent(@PathVariable(value = "studentId") Long studentId,
+                                           @RequestParam(value = "subjectId") Long subjectId) {
+        return studentService.assignSubjectToStudent(studentId, subjectId);
+    }
 }

@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/api/v1/student/subject")
+@RequestMapping(path = "/api/v1/subject")
 public class SubjectController {
 
     private final SubjectService subjectService;
@@ -15,10 +15,10 @@ public class SubjectController {
         this.subjectService = subjectService;
     }
 
-//    @GetMapping
-//    public List<Subject> getSubject() {
-//        return subjectService.getSubjects();
-//    }
+    @GetMapping
+    public List<Subject> getSubject() {
+        return subjectService.getSubjects();
+    }
 
     @GetMapping("/{id}")
     public Subject getSubject(@PathVariable(value = "id") Long id) {
@@ -40,7 +40,7 @@ public class SubjectController {
 
     @DeleteMapping(path = "{subjectId}")
     public String deleteSubject(
-            @PathVariable("studentId")Long subjectId){
+            @PathVariable("subjectId")Long subjectId){
         subjectService.deleteSubject(subjectId);
         String response = "subjectId has been deleted successfully "+subjectId;
         return response;

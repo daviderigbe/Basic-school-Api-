@@ -16,8 +16,9 @@ public class SubjectService {
         this.subjectRepository = subjectRepository;
     }
 
-//    public List<Subject> getSubjects() {
-//    }
+    public List<Subject> getSubjects() {
+        return subjectRepository.findAll();
+    }
 
     public Subject getSubject(Long id) {
         return (Subject) subjectRepository.findById(id).orElseThrow(() -> new IllegalStateException("This Is Invalid"));
@@ -44,7 +45,7 @@ public class SubjectService {
         boolean exists = subjectRepository.existsById(subjectId);
         if (!exists) {
             throw new IllegalStateException(
-                    "student with id" + subjectId + " does not exist");
+                    "subject with id" + subjectId + " does not exist");
         }
         subjectRepository.deleteById(subjectId);
     }

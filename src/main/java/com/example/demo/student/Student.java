@@ -1,8 +1,12 @@
 package com.example.demo.student;
 
+import com.example.demo.subject.Subject;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table
@@ -22,6 +26,18 @@ public class Student {
     private String name;
     private String email;
     private LocalDate dob;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "student", fetch = FetchType.EAGER)
+    private Set<Subject> subjects;
+
+    public Set<Subject> getSubjects() {
+        return subjects;
+    }
+
+    public void setSubjects(Set<Subject> subjects) {
+        this.subjects = subjects;
+    }
+
     @Transient
     private Integer age;
 
@@ -97,6 +113,7 @@ public class Student {
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", dob=" + dob +
+                ", subjects=" + subjects +
                 ", age=" + age +
                 '}';
     }
