@@ -27,7 +27,7 @@ public class Student {
     private String email;
     private LocalDate dob;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "student", fetch = FetchType.EAGER)
+    @OneToMany
     private Set<Subject> subjects;
 
     public Set<Subject> getSubjects() {

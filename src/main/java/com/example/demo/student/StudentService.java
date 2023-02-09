@@ -75,9 +75,8 @@ public class StudentService {
         Set<Subject> subjects = student.getSubjects();
         subjects.add(optionalSubject.get());
 
-        student.setSubjects(subjects);
-
         student = studentRepository.save(student);
+        subjectRepository.save(optionalSubject.get());
 
         return student;
     }
